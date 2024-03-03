@@ -46,11 +46,31 @@ function renderProjectContact(contact){
 function generateMarkdown(data) {
   return `# ${data.title}
 
-${renderProjectDescription(data.description)}  
+## **Table of Contents:**
+
+- [Description](#desc)
+- [How to Install](#install)
+- [Project Usage](#use)
+- [Credits](#cred)
+- [License](#lice)
+- [Contact Me](#cont)
+
+<a id="desc"></a>
+${renderProjectDescription(data.description)}
+
+<a id="install"></a>
 ${renderProjectInstallation(data.installation)}
+
+<a id="use"></a>
 ${renderProjectUsage(data.usage)}
+
+<a id="cred"></a>
 ${renderProjectCredits(data.credits)}
+
+<a id="lice"></a>
 ${renderLicenseSection(data.license)}
+
+<a id="cont"></a>
 ${renderProjectContact(data.contact)}
 
 

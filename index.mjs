@@ -18,7 +18,7 @@ function init() {
 inquirer
     .prompt(questions)
     .then(answers=> {
-        console.log(answers)
+        //console.log(answers)
         let template = generateMarkdown(answers)
         fs.writeFileSync("sample.md", template)
     })
