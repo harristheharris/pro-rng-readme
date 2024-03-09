@@ -3,12 +3,19 @@
 
 //I just put the badge and link in one function. I have no idea why you would have them seperate tbh
 function renderLicenseBadge(license) {
-  if (license == "MIT") {
-    return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+
+  //I have no idea why this isn't working now. Intially it rendered the svg image but now it does not?????
+  const objLicense = { 
+    badge: `[![License: ${license}](https://img.shields.io/badge/License-${license}-yellow.svg)]`,
+    liceName: `${license}`,
+    link:`https://opensource.org/licenses/${license}`
   }
 
-  if (license == "ISC") {
-    return "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)"
+  if (license) {
+    return `
+    ${objLicense.badge}  
+    This application is covered under the ${objLicense.liceName} license.
+    `
   }
 
   return ""
@@ -19,11 +26,19 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license == "No License") { return "" }
-  return `## License \n${renderLicenseBadge(license)}`
+  return `## License ${renderLicenseBadge(license)}`
 }
 
 function renderProjectDescription(description){
   return `## Description \n ${description}`
+}
+
+function renderGitUserName(usernameGithub){
+  return `[${usernameGithub}.com](https://github.com/${usernameGithub})`
+}
+
+function renderEmail(usernameEmail){
+  return `email: ${usernameEmail}`
 }
 
 function renderProjectInstallation(installation){
@@ -53,7 +68,7 @@ function generateMarkdown(data) {
 - [Project Usage](#use)
 - [Credits](#cred)
 - [License](#lice)
-- [Contact Me](#cont)
+- [Questions](#quest)
 
 <a id="desc"></a>
 ${renderProjectDescription(data.description)}
@@ -70,9 +85,10 @@ ${renderProjectCredits(data.credits)}
 <a id="lice"></a>
 ${renderLicenseSection(data.license)}
 
-<a id="cont"></a>
-${renderProjectContact(data.contact)}
-
+<a id="quest"></a>
+## Questions \n
+${renderGitUserName(data.usernameGithub)} \n
+${renderEmail(data.usernameEmail)}
 
 `;
 }
